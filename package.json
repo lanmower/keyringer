@@ -1,6 +1,6 @@
 {
   "name": "keyringer",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Hierarchical deterministic key management with P2P distribution",
   "main": "index.js",
   "bin": {
