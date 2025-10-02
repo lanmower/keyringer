@@ -1,5 +1,4 @@
 const express = require('express')
-const WebSocket = require('ws')
 const fs = require('fs').promises
 const path = require('path')
 const { spawn } = require('child_process')
@@ -257,11 +256,17 @@ const viteProcess = spawn('npm', ['run', 'dev'], {
   shell: true
 })
 
+app.use('/api', apiRouter)
+
+const server = app.listen(PORT, () => {
+  console.log(`Keyringer GUI running at http://localhost:${PORT}`)
+})
+
 setTimeout(() => {
   app.use('/', createProxyMiddleware({
     target: `http://localhost:${VITE_PORT}`,
     changeOrigin: true,
-    ws: true,
+    ws: false,
     filter: (pathname) => !pathname.startsWith('/api'),
     onError: (err, req, res) => {
       res.writeHead(503, { 'Content-Type': 'text/plain' })
@@ -270,25 +275,6 @@ setTimeout(() => {
   }))
   console.log(`Proxying frontend from Vite dev server on port ${VITE_PORT}`)
 }, 3000)
-
-app.use('/api/master', apiRouter)
-
-const server = app.listen(PORT, () => {
-  console.log(`Keyringer GUI running at http://localhost:${PORT}`)
-})
-
-const wss = new WebSocket.Server({ server })
-
-wss.on('connection', (ws) => {
-  ws.on('message', async (message) => {
-    try {
-      const data = JSON.parse(message)
-      ws.send(JSON.stringify({ type: 'ack', data }))
-    } catch (error) {
-      ws.send(JSON.stringify({ type: 'error', error: error.message }))
-    }
-  })
-})
 
 process.on('SIGINT', () => {
   console.log('\nShutting down...')
