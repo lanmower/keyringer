@@ -1,0 +1,11 @@
+{
+  "name": "@keyringer/drive",
+  "version": "1.0.0",
+  "main": "index.js",
+  "dependencies": {
+    "@keyringer/core": "^1.0.0",
+    "@keyringer/access": "^1.0.0",
+    "hyperdrive": "^11.0.0",
+    "corestore": "^6.0.0"
+  }
+}

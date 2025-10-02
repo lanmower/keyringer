@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Keyringer - Secure Key Management</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>🔐 Keyringer</h1>
+      <p>Hierarchical Key Management & Distribution</p>
+    </header>
+
+    <section class="master-key">
+      <h2>Master Key</h2>
+      <div class="button-group">
+        <button id="init-btn">Create New</button>
+        <button id="load-btn">Load Existing</button>
+      </div>
+      <div id="master-status" class="status"></div>
+    </section>
+
+    <section class="structure">
+      <h2>Key Structure</h2>
+      <div class="form-group">
+        <input type="text" id="category-input" placeholder="Category name">
+        <button id="add-category-btn">Add Category</button>
+      </div>
+      <div class="form-group">
+        <select id="category-select"></select>
+        <input type="text" id="server-input" placeholder="Server name">
+        <button id="add-server-btn">Add Server</button>
+      </div>
+      <div id="structure-tree"></div>
+    </section>
+
+    <section class="grants">
+      <h2>Access Grants</h2>
+      <div class="form-group">
+        <input type="text" id="grant-path" placeholder="category/server">
+        <select id="grant-level">
+          <option value="0">NONE</option>
+          <option value="1">PUBLIC_ONLY</option>
+          <option value="2">CATEGORY_READ</option>
+          <option value="3">CATEGORY_SIGN</option>
+          <option value="4">FULL_CONTROL</option>
+        </select>
+        <button id="create-grant-btn">Create Grant</button>
+      </div>
+      <div id="grants-list"></div>
+    </section>
+
+    <section class="distribution">
+      <h2>Hyperdrive Distribution</h2>
+      <div class="button-group">
+        <button id="create-drive-btn">Create Drive</button>
+        <button id="sync-drive-btn">Sync to Network</button>
+      </div>
+      <div id="drive-status" class="status"></div>
+      <div id="drive-key" class="mono"></div>
+    </section>
+
+    <section class="audit">
+      <h2>Audit Log</h2>
+      <button id="audit-btn">Generate Audit</button>
+      <pre id="audit-output"></pre>
+    </section>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,9 @@
+{
+  "name": "@keyringer/auth",
+  "version": "1.0.0",
+  "main": "index.js",
+  "dependencies": {
+    "@keyringer/core": "file:../keyring-core",
+    "hypercore-crypto": "^3.4.0"
+  }
+}

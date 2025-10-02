@@ -1,0 +1,11 @@
+{
+  "name": "@keyringer/aliveness",
+  "version": "1.0.0",
+  "main": "index.js",
+  "dependencies": {
+    "@keyringer/core": "^1.0.0",
+    "@keyringer/auth": "^1.0.0",
+    "hyperdht": "^6.0.0",
+    "msgpackr": "^1.0.0"
+  }
+}

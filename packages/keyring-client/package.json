@@ -1,0 +1,11 @@
+{
+  "name": "@keyringer/client",
+  "version": "1.0.0",
+  "main": "index.js",
+  "dependencies": {
+    "@keyringer/core": "file:../keyring-core",
+    "@keyringer/tree": "file:../keyring-tree",
+    "@keyringer/auth": "file:../keyring-auth",
+    "@keyringer/server": "file:../keyring-server"
+  }
+}

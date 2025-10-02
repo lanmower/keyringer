@@ -1,0 +1,21 @@
+{
+  "tree": {
+    "encrypted": "f83f4cfead6cce4f07a7fe790c5bcd65b93712ccaed1b92d3c5b65721f7e5c5d457f6b00839383f4515d3c1a54142178db95aa0de2e25a75e1d89262b63c6aa93c7b39f9545743ab8654e39ca297f877",
+    "branches": {
+      "api": {
+        "publicKey": "f4744213bea0df6bc4bcfbfd20653a922836afb73b952f84ade7bb8782aa234d",
+        "tweak": "api"
+      },
+      "db": {
+        "publicKey": "e61fc1587666bafac984dee41e4f8208323b24a9f6fcb19afe0f44ae9701a986",
+        "tweak": "db"
+      },
+      "cache": {
+        "publicKey": "feeeb7dc1aaf5ceb4e94cbe10acee7227215cb9a7d29778f4c91de891c2feb5b",
+        "tweak": "cache"
+      }
+    }
+  },
+  "grants": {},
+  "timestamp": 1759401048838
+}

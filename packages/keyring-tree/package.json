@@ -1,0 +1,8 @@
+{
+  "name": "@keyringer/tree",
+  "version": "1.0.0",
+  "main": "index.js",
+  "dependencies": {
+    "@keyringer/core": "file:../keyring-core"
+  }
+}

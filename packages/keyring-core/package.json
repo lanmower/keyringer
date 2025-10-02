@@ -1,0 +1,9 @@
+{
+  "name": "@keyringer/core",
+  "version": "1.0.0",
+  "main": "index.js",
+  "dependencies": {
+    "keypear": "^1.2.2",
+    "hypercore-crypto": "^3.4.0"
+  }
+}

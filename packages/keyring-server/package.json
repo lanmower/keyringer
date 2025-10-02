@@ -1,0 +1,10 @@
+{
+  "name": "@keyringer/server",
+  "version": "1.0.0",
+  "main": "index.js",
+  "dependencies": {
+    "@keyringer/core": "file:../keyring-core",
+    "hyperdht": "^6.6.2",
+    "msgpackr": "^1.9.9"
+  }
+}

@@ -1,0 +1,9 @@
+node_modules
+*.log
+.DS_Store
+master.key
+.playwright-mcp
+.transformers-cache
+glootie
+gui/wallet-ui/node_modules
+gui/node_modules
