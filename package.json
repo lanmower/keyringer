@@ -4,7 +4,7 @@
   "description": "Hierarchical deterministic key management with P2P distribution",
   "main": "index.js",
   "bin": {
-    "keyringer": "./cli.js"
+    "keyringer": "cli.js"
   },
   "scripts": {
     "test": "node test-e2e.js",
@@ -15,12 +15,20 @@
     "packages/*",
     "gui"
   ],
-  "keywords": ["keys", "cryptography", "ed25519", "hierarchical", "p2p", "security", "server-keys"],
+  "keywords": [
+    "keys",
+    "cryptography",
+    "ed25519",
+    "hierarchical",
+    "p2p",
+    "security",
+    "server-keys"
+  ],
   "author": "",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/lanmower/keyringer.git"
+    "url": "git+https://github.com/lanmower/keyringer.git"
   },
   "engines": {
     "node": ">=18.0.0"
