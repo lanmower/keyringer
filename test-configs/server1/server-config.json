@@ -1,0 +1,9 @@
+{
+  "category": "api",
+  "serverName": "server1",
+  "publicKey": "e9b0e6d80671d79867d55c609bafe8ad8ec77384614d4723f93aa13871e45b56",
+  "privateKey": "4daef6afb336abbc94f3b997030fccace186664bd755e8be0604d686ae3bff0e",
+  "categorySeed": "dbad434e778606d6fc7d580845d5e8ca3c4024eadffcc9ce4adb6414ae83c167",
+  "discoverySecret": "keyringer-test-network-2025",
+  "path": "api/server1"
+}

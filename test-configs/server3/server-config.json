@@ -1,0 +1,9 @@
+{
+  "category": "db",
+  "serverName": "primary",
+  "publicKey": "8c91c13cd956735e9493e73d8180784a293bcdbb467a68a8330f0191631e0b08",
+  "privateKey": "10ddfbe365a7f9984163eed9b000f03e54eef2d1e716cd05b38a28adf315b008",
+  "categorySeed": "06a1d783b07ff421e8a20f61872e1e1351e8eba7bd4897d69b98989ea1dedcfc",
+  "discoverySecret": "keyringer-test-network-2025",
+  "path": "db/primary"
+}

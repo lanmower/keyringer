@@ -1,0 +1,64 @@
+{
+  "tree": {
+    "encrypted": "80cf38ed510c0c7b126644c7e82af1d64865a60fcbeef6a5f5db2d1bb0f7e431704f555b65f3c1d2abd47c332f7df93d0c2d3676de8b9a77422b335d48507ff20cbf797fa0f001c4246f92b39712a99c",
+    "branches": {
+      "api": {
+        "publicKey": "356434921066929576e9a1a0bd7d9127de223c8ac8532fd53a9c9db6dc3ae8f6",
+        "tweak": "api"
+      },
+      "db": {
+        "publicKey": "c2431b0ea3361f920e96fc009bce43b264ac3cd5f273dacad748619c011d0457",
+        "tweak": "db"
+      },
+      "cache": {
+        "publicKey": "45ddae38c30a95896a65f9fc59e97e17c9424f9bc3cc7aa7f258acc9ed7bb837",
+        "tweak": "cache"
+      }
+    }
+  },
+  "grants": {
+    "api/server1": {
+      "level": 3,
+      "grant": {
+        "publicKey": "f3b951a9a12d884723002cca9b0bf789a806e308273f45be7fde74f7c973e406",
+        "privateKey": "d0e6a985ab1f9f11a18ecc96f23d3f360a8cf2fd537ef5a2533e4158ff7d200c",
+        "path": "api/server1",
+        "category": "api"
+      }
+    },
+    "api/server2": {
+      "level": 3,
+      "grant": {
+        "publicKey": "02ec8da5bcc4b1f7c0e630ea699c2656f80dc03e592874fa9fc3a43a1c14aa19",
+        "privateKey": "69ea6bc8a92cae0d6d0fafa8c3c7d28f80238c3ef4b7b5ac167281952894d706",
+        "path": "api/server2",
+        "category": "api"
+      }
+    },
+    "db/primary": {
+      "level": 3,
+      "grant": {
+        "publicKey": "f4d9ae7d2c6f2b52093b05393364c18fc6d27cc490fde376a836afc37ac05b9a",
+        "privateKey": "205f07a4bd24068ed7589629e8f6fc82726228dc9b31a1a35902d731913cb206",
+        "path": "db/primary",
+        "category": "db"
+      }
+    },
+    "db/replica1": {
+      "level": 2,
+      "grant": {
+        "publicKey": "c2431b0ea3361f920e96fc009bce43b264ac3cd5f273dacad748619c011d0457",
+        "category": "db",
+        "path": "db/replica1"
+      }
+    },
+    "cache/redis1": {
+      "level": 1,
+      "grant": {
+        "publicKey": "f16dc3eec40c83a93db25944cb717b23f85687edefd7bdbb5af7cadb976e04c2",
+        "path": "cache/redis1"
+      }
+    }
+  },
+  "timestamp": 1759401124635
+}
