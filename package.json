@@ -1,28 +1,27 @@
 {
   "name": "keyringer",
-  "version": "1.0.4",
-  "description": "Hierarchical deterministic key management with P2P distribution",
+  "version": "2.0.0",
+  "description": "Deterministic keypear + HyperDHT trees: derive sibling address/encryption keys from a text path, announce with the private pair, load and decrypt with the public pair",
   "main": "index.js",
   "bin": {
     "keyringer": "cli.js"
   },
   "scripts": {
-    "test": "node test-e2e.js",
-    "start": "cd gui && npm start",
-    "gui": "cd gui && npm start"
+    "test": "node test.js"
   },
-  "workspaces": [
-    "packages/*",
-    "gui"
-  ],
+  "dependencies": {
+    "hyperdht": "^6.33.0",
+    "keypear": "^1.2.2"
+  },
   "keywords": [
     "keys",
     "cryptography",
     "ed25519",
     "hierarchical",
     "p2p",
-    "security",
-    "server-keys"
+    "hyperdht",
+    "keypear",
+    "holepunch"
   ],
   "author": "",
   "license": "MIT",

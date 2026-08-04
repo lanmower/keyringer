@@ -1,104 +1,61 @@
-# Keyringer - Hierarchical Key Management System
+# Keyringer
 
-Secure, P2P-enabled hierarchical key management for distributed server infrastructure with non-escalatable access control and automatic server bootstrapping.
+Deterministic capability trees on HyperDHT, built on `keypear` and `hyperdht`.
 
-## Quick Start
+Any text path (e.g. `"users/alice/inbox"`) derives two sibling Ed25519 keypairs:
 
-### Option 1: Run with npx (Easiest)
+- **address** — signs and addresses the HyperDHT mutable record. Safe to broadcast.
+- **encryption** — never broadcast. Its public key seeds an AES-256-GCM key. Because it's
+  a sibling of, not identical to, the address key, a DHT sniffer who observes and fetches
+  the record still cannot derive the encryption key without the text path.
+
+## The two pairs
+
+- **Private pair** (root seed + text path + payload) — derives both sibling keys, encrypts
+  the payload, and announces it on HyperDHT (`announce`).
+- **Public pair** (root public key + text path) — deterministically derives the same sibling
+  public keys, looks the record up on HyperDHT, and decrypts it (`load`).
+
+Since `keypear` derivation is public-key-only capable, the public pair never needs the
+private root — only the root public key and the text path, both of which can be shared
+out of band.
+
+## Usage
+
+```js
+const DHT = require('hyperdht')
+const crypto = require('crypto')
+const Keychain = require('keypear')
+const { announce, load } = require('keyringer')
+
+const dht = new DHT()
+const rootSeed = crypto.randomBytes(32)
+const rootPublicKey = Keychain.keyPair(rootSeed).publicKey
+
+// Private pair: encrypt and announce
+await announce(dht, rootSeed, 'trees/my-app/secure-key-01', 'super-secret-payload')
+
+// Public pair: look up and decrypt
+const payload = await load(dht, rootPublicKey, 'trees/my-app/secure-key-01')
+console.log(payload.toString()) // 'super-secret-payload'
+
+await dht.destroy()
+```
+
+## CLI
 
 ```bash
-npx keyringer
+npx keyringer seed
+npx keyringer announce <rootSeedHex> <textPath> <payload>
+npx keyringer load <rootPublicKeyHex> <textPath>
 ```
-
-### Option 2: Clone and Run Locally
-
-```bash
-git clone https://github.com/lanmower/keyringer.git
-cd keyringer
-npm install
-npm start
-```
-
-The GUI opens at **http://localhost:3777** with both backend API and frontend UI.
-
-###  2. Create Your Master Key
-
-Open http://localhost:3777 in your browser and:
-1. Click **"Create New"** to generate a fresh master key (saved to `./master.key`)
-2. OR click **"Load Existing"** to use an existing master key
-
-### 3. Organize Your Servers
-
-1. **Add Categories** - Create logical groupings like "api", "db", "cache"
-2. **Add Servers** - Within each category, add your servers (e.g., "server1", "server2")
-
-### 4. Deploy Servers
-
-1. Go to **"Step 3: Server Bootstrap"**
-2. Select a category and server
-3. Set a discovery secret (or auto-generate one)
-4. Click **"Generate Bootstrap Script"**
-5. Copy the script and run it on your target server
-
-The server will automatically:
-- Receive its cryptographic keys
-- Announce itself on the P2P network
-- Start aliveness monitoring
-- Begin serving with derived sibling keys
-
-### 5. Monitor Server Health
-
-Click **"Check All Servers"** to see real-time status of all deployed servers with uptime, latency, and connectivity information.
-
-## Key Features
-
-### ✓ Hierarchical Key Derivation
-```
-Master Seed
-  ↓
-Category Seeds (hash-based derivation)
-  ↓
-Server Keypairs (deterministic generation)
-```
-
-### ✓ Non-Escalatable Security
-
-Servers can:
-- Derive ALL sibling keys in their category
-- Sign and verify as their category
-- Generate bearer tokens for authentication
-
-Servers **cannot**:
-- Access parent (master) keys
-- Derive keys from other categories
-- Escalate their privilege level
-
-### ✓ P2P Discovery
-
-Servers with the same discovery secret find each other automatically via DHT.
-
-### ✓ Aliveness Monitoring
-
-The wallet performs cryptographic health checks with ping, challenge-response, and status reports.
-
-### ✓ Turnkey Deployment
-
-One command deploys a fully configured server with keys, P2P discovery, and monitoring.
-
-## Architecture
-
-See [DEPLOYMENT.md](./DEPLOYMENT.md) for complete architectural documentation, security model, API reference, and production deployment guide.
 
 ## Testing
 
 ```bash
-# Test complete bootstrap workflow
-node test-bootstrap.js
-
-# Test aliveness monitoring
-node test-aliveness.js
+npm test
 ```
 
 ## License
 
-ISC
+MIT

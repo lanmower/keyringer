@@ -5,5 +5,6 @@ master.key
 .playwright-mcp
 .transformers-cache
 glootie
-gui/wallet-ui/node_modules
-gui/node_modules
+.gm
+.agentplug-kv
+*.stackdump

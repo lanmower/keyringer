@@ -1,12 +1,14 @@
 node_modules
 .git
 .vscode
+.claude
 .DS_Store
 *.log
-test-*.js
+test.js
 master.key
 .playwright-mcp
-gui/wallet-ui/node_modules
-gui/node_modules
 .transformers-cache
 glootie
+.gm
+.agentplug-kv
+*.stackdump
