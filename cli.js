@@ -1,8 +1,7 @@
 #!/usr/bin/env node
 
 const DHT = require('hyperdht')
-const crypto = require('crypto')
-const { announce, load } = require('./index.js')
+const { announce, load, generateRootSeed } = require('./index.js')
 
 const args = process.argv.slice(2)
 const command = args[0]
@@ -19,39 +18,36 @@ Usage:
 `)
 }
 
+const withDht = async (fn) => {
+  const dht = new DHT()
+  try {
+    return await fn(dht)
+  } finally {
+    await dht.destroy()
+  }
+}
+
 const main = async () => {
   if (command === 'seed') {
-    const seed = crypto.randomBytes(32)
-    const Keychain = require('keypear')
-    const rootKeyPair = Keychain.keyPair(seed)
+    const { seed, publicKey } = generateRootSeed()
     console.log('seed:', seed.toString('hex'))
-    console.log('publicKey:', rootKeyPair.publicKey.toString('hex'))
+    console.log('publicKey:', publicKey.toString('hex'))
     return
   }
 
   if (command === 'announce') {
     const [, rootSeedHex, textPath, payload] = args
     if (!rootSeedHex || !textPath || !payload) return usage()
-    const dht = new DHT()
-    try {
-      const result = await announce(dht, Buffer.from(rootSeedHex, 'hex'), textPath, payload)
-      console.log('announced at:', result.publicKey.toString('hex'), 'seq:', result.seq)
-    } finally {
-      await dht.destroy()
-    }
+    const result = await withDht((dht) => announce(dht, Buffer.from(rootSeedHex, 'hex'), textPath, payload))
+    console.log('announced at:', result.publicKey.toString('hex'), 'seq:', result.seq)
     return
   }
 
   if (command === 'load') {
     const [, rootPublicKeyHex, textPath] = args
     if (!rootPublicKeyHex || !textPath) return usage()
-    const dht = new DHT()
-    try {
-      const value = await load(dht, Buffer.from(rootPublicKeyHex, 'hex'), textPath)
-      console.log(value.toString('utf8'))
-    } finally {
-      await dht.destroy()
-    }
+    const value = await withDht((dht) => load(dht, Buffer.from(rootPublicKeyHex, 'hex'), textPath))
+    console.log(value.toString('utf8'))
     return
   }
 

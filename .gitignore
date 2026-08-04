@@ -6,5 +6,7 @@ master.key
 .transformers-cache
 glootie
 .gm
+.agentplug
 .agentplug-kv
 *.stackdump
+config.bat
